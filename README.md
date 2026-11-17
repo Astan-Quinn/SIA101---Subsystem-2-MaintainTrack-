@@ -266,3 +266,6 @@ Separately, the treasurer records bodega movements (borrow, return, use, procure
 - **Leftover archives:** `pages/admin.zip`, `pages/maintenance.zip`, and `pages/regular.zip` are old copies of the page folders. They are not used by the app and can be deleted once you confirm the matching folders are complete.
 - **Hardcoded keys:** The Supabase secret key is stored in `Config/supabase.php`. See the warning in [Supabase Backend and Storage](#supabase-backend-and-storage).
 - **Open to-do items:** `docs/importante.txt` lists pending work, including dropdown placeholder fixes, notification fixes, the mobile layout plan, and filter and reset behavior.
+# Central integration backfill
+
+After applying `sql/migration_central_backfill.sql`, run `php scripts/backfill_central_records.php` from the project root. It snapshots existing maintenance requests and outcomes into the same transactional outbox used by live changes. The scheduled publisher delivers the events asynchronously; rerun safely to resume. Pass `--reconcile` to reset both checkpoints and enqueue corrective snapshots again.

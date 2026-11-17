@@ -147,21 +147,21 @@ renderHead('Facilities & Equipment', 'Facility.css', 'maintenance');
         </div>
 
         <select class="filter-select" id="facilityFilter" aria-label="Filter by facility">
-            <option value="" disabled hidden selected>All Facilities</option>
+            <option value="" selected>All Facilities</option>
             <?php foreach ($facilityOptions as $name): ?>
                 <option value="<?= e($name) ?>"><?= e($name) ?></option>
             <?php endforeach; ?>
         </select>
 
         <select class="filter-select" id="categoryFilter" aria-label="Filter by category">
-            <option value="" disabled hidden selected>All Categories</option>
+            <option value="" selected>All Categories</option>
             <?php foreach ($categoryOptions as $name): ?>
                 <option value="<?= e($name) ?>"><?= e($name) ?></option>
             <?php endforeach; ?>
         </select>
 
         <select class="filter-select" id="statusFilter" aria-label="Filter by your task">
-            <option value="" disabled hidden selected>All Statuses</option>
+            <option value="" selected>All Statuses</option>
             <option value="mine">Assigned to me</option>
             <option value="none">Not assigned to me</option>
         </select>

@@ -47,7 +47,7 @@ renderHead('Profile', 'Profile.css', 'treasurer');
     <!-- ONE CONTAINER: banner + all page content -->
     <div class="one-card">
 
-    <?php renderPageHeader('Profile', 'Bodega & Procurement Portal • Barangay Gulod', 'treasurer'); ?>
+    <?php renderPageHeader('Profile', 'Storage Unit & Procurement Portal • Barangay Gulod', 'treasurer'); ?>
 
     <div class="profile-layout">
         <section class="profile-card">

@@ -533,6 +533,7 @@ renderHead('Profile & Account', 'Profile.css', 'secretary');
                 text: result.warning || 'Your profile has been updated successfully!',
                 confirmText: 'OK'
             });
+            window.AppToast.show('Profile updated successfully.');
         });
 
         /* ==========================================
@@ -633,6 +634,7 @@ renderHead('Profile & Account', 'Profile.css', 'secretary');
                 text: result.warning || 'Your password has been updated successfully!',
                 confirmText: 'OK'
             });
+            window.AppToast.show('Password updated successfully.');
         });
 
         /* ==========================================

@@ -50,7 +50,7 @@ renderHead('History', 'History.css', 'treasurer');
 
     <form method="get" class="tr-toolbar tr-inline tr-wrap">
         <select class="tr-select" name="type">
-            <option value="" disabled hidden <?= $filterType === '' ? 'selected' : '' ?>>All movements</option>
+            <option value="" <?= $filterType === '' ? 'selected' : '' ?>>All movements</option>
             <?php foreach ($validTypes as $type): ?>
                 <option value="<?= e($type) ?>" <?= $filterType === $type ? 'selected' : '' ?>><?= e(ucfirst(str_replace('_', ' ', $type))) ?></option>
             <?php endforeach; ?>

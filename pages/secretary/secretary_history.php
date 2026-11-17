@@ -405,9 +405,10 @@ renderHead('History', 'History.css', 'secretary');
                 }
 
                 // Reload so the list, the status pill and the sort order are up to date
+                window.AppToast.queue('Request decision updated successfully.');
                 window.location.reload();
             } catch (err) {
-                alert(err.message);
+                window.AppToast.show(err.message, 'error');
             } finally {
                 changeConfirmYes.disabled = false;
                 closeChangeModals();

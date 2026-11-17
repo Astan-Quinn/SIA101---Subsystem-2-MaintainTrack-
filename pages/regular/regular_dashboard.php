@@ -195,4 +195,3 @@ document.addEventListener('DOMContentLoaded', function () {
 <?php renderFoot(); ?>
 </html>
 <script src="<?= e(appAssetUrl('assets/js/LoadingOverlay.js')) ?>"></script>
-   <script src="<?= $siteRoot ?? '' ?>../assets/js/NotificationSound.js"></script>
