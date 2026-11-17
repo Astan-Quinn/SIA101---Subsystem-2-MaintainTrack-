@@ -257,14 +257,14 @@ Separately, the treasurer records bodega movements (borrow, return, use, procure
 4. Put page-specific styles in `assets/css/<role>/`, named `<role>_<Page>.css`. The stylesheet path passed to `renderHead()` is relative to `assets/css/`.
 
 > [!IMPORTANT]
-> Keep `Config/supabase.php` values out of documentation, screenshots, and commits.
+> Keep Supabase service-role keys in the ignored project-root `.env` file or server environment variables. Never place them in browser code, documentation, screenshots, or commits. `Config/supabase.php` loads `MAINTAINTRACK_SUPABASE_SECRET_KEY` from that configuration.
 
 ---
 
 ## Known Notes
 
 - **Leftover archives:** `pages/admin.zip`, `pages/maintenance.zip`, and `pages/regular.zip` are old copies of the page folders. They are not used by the app and can be deleted once you confirm the matching folders are complete.
-- **Hardcoded keys:** The Supabase secret key is stored in `Config/supabase.php`. See the warning in [Supabase Backend and Storage](#supabase-backend-and-storage).
+- **Supabase credentials:** Configure `MAINTAINTRACK_SUPABASE_SECRET_KEY` in the ignored project-root `.env` file. If a secret key was previously committed or shared, rotate it in Supabase and update each server's `.env`.
 - **Open to-do items:** `docs/importante.txt` lists pending work, including dropdown placeholder fixes, notification fixes, the mobile layout plan, and filter and reset behavior.
 # Central integration backfill
 
