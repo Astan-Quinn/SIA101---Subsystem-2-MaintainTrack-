@@ -59,7 +59,12 @@ BEGIN
         ELSE
             v_row:=to_jsonb(NEW);
             v_event_type:='maintenance.result.recorded';
-            v_payload:=jsonb_strip_nulls(jsonb_build_object('id',v_source_id,'request_id',v_row->'request_id','status',v_row->'status','created_at',v_row->'created_at'));
+            v_payload:=jsonb_strip_nulls(jsonb_build_object(
+                'id',v_source_id,'request_id',v_row->'request_id','status',v_row->'status',
+                'title',v_row->'title',
+                'completion_outcome',CASE WHEN lower(COALESCE(v_row->>'status',''))='completed' THEN v_row->'update_text' ELSE NULL END,
+                'created_at',v_row->'created_at'
+            ));
         END IF;
     END IF;
     INSERT INTO public.integration_outbox(event_id,event_type,source_system,event_version,correlation_id,occurred_at,source_id,record_type,payload)
