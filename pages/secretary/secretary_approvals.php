@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../Config/supabase.php';
+require_once __DIR__ . '/../../includes/supabase_client.php';
 
 require_once __DIR__ . '/../../Components/layout.php';
 
@@ -25,7 +25,7 @@ if (mtRoleContext() !== 'secretary' || mtNormalizeRole($_SESSION['role'] ?? '') 
 
    this admin page. The key stays in PHP and is never sent to the browser.
 
-   (Your supabaseRequest() in Config/supabase.php always sends the
+   (Your supabaseRequest() in includes/supabase_client.php always sends the
 
    publishable key, so this page uses its own small helper.)
 

@@ -6,10 +6,10 @@
  *
  * CHECK THESE TWO LINES AGAINST YOUR PROJECT (I could not see your session.php):
  *   1. $userId: the session key that holds the logged-in user's users.user_id
- *   2. SUPABASE_URL / SUPABASE_SECRET_KEY: the constant names in Config/supabase.php
+ *   2. SUPABASE_URL / SUPABASE_SECRET_KEY: the constant names in includes/supabase_client.php
  */
 require_once __DIR__ . '/session.php';           // picks the role session from ?role=
-require_once __DIR__ . '/../Config/supabase.php';
+require_once __DIR__ . '/supabase_client.php';
 
 header('Content-Type: application/json');
 header('Cache-Control: no-store');

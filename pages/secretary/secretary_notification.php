@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../Config/supabase.php';
+require_once __DIR__ . '/../../includes/supabase_client.php';
 require_once __DIR__ . '/../../Components/layout.php';
 require_once __DIR__ . '/../../Components/notification_view.php';
 require_once __DIR__ . '/../../includes/role_notifications.php';

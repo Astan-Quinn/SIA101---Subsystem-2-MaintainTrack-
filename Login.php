@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 session_start();
 
-require_once __DIR__ . '/Config/supabase.php';
+require_once __DIR__ . '/includes/supabase_client.php';
 
 /**
  * MaintainTrack login using Supabase Auth.

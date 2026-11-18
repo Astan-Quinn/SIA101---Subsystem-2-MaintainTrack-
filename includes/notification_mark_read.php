@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/session.php';
-require_once __DIR__ . '/../Config/supabase.php';
+require_once __DIR__ . '/supabase_client.php';
 
 header('Content-Type: application/json');
 header('Cache-Control: no-store');

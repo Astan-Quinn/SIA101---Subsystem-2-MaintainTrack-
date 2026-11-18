@@ -2,10 +2,10 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../Components/layout.php';
-require_once __DIR__ . '/../../Config/supabase.php';
+require_once __DIR__ . '/../../includes/supabase_client.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-/* Registry server-side Supabase helper. Keep the secret key in Config/supabase.php only. */
+/* Registry server-side Supabase helper. Keep the secret key in includes/supabase_client.php only. */
 function registryRequest(string $method, string $endpoint, ?array $payload = null, array $extraHeaders = []): array {
     if (!defined('SUPABASE_URL') || !defined('SUPABASE_SECRET_KEY') || !function_exists('curl_init')) {
         return ['success'=>false,'status'=>0,'data'=>null,'error'=>'Missing Supabase configuration or PHP cURL.'];

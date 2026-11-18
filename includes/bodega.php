@@ -18,7 +18,7 @@
 
 date_default_timezone_set('Asia/Manila');
 
-require_once __DIR__ . '/../Config/supabase.php';
+require_once __DIR__ . '/supabase_client.php';
 
 if (!defined('BODEGA_BUCKET')) {
     define('BODEGA_BUCKET', 'bodega-documents');

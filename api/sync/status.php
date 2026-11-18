@@ -5,7 +5,7 @@ require_once __DIR__.'/../../includes/session.php';
 header('Content-Type: application/json; charset=utf-8');header('Cache-Control: no-store');
 if(($_SERVER['REQUEST_METHOD']??'GET')!=='GET'){header('Allow: GET');http_response_code(405);echo json_encode(['error'=>'method_not_allowed']);exit;}
 if(($_SESSION['role']??'')!=='admin'){http_response_code(401);echo json_encode(['error'=>'admin_auth_required']);exit;}
-require_once __DIR__.'/../../Config/supabase.php';
+require_once __DIR__.'/../../includes/supabase_client.php';
 function mtIntegrationCount(string $table): int{
     $url=rtrim(SUPABASE_URL,'/').'/rest/v1/'.rawurlencode($table).'?select=event_id&limit=1000';
     $key=SUPABASE_SECRET_KEY;$headers=['apikey: '.$key,'Accept: application/json','Prefer: count=exact'];

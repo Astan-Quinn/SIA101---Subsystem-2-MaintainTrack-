@@ -2,7 +2,7 @@
 /* layout.php loads includes/session.php, which starts the secretary's own session.
    (Do not call session_start() before it, or the page falls back to the shared
    PHPSESSID, the role check fails and the page bounces to the login.) */
-require_once __DIR__ . '/../../Config/supabase.php';
+require_once __DIR__ . '/../../includes/supabase_client.php';
 require_once __DIR__ . '/../../Components/layout.php';
 
 /* =========================================================

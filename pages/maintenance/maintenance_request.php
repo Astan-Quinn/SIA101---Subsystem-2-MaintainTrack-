@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../../includes/session.php';
 require_once __DIR__ . '/../../Components/layout.php';
-require_once __DIR__ . '/../../Config/supabase.php';
+require_once __DIR__ . '/../../includes/supabase_client.php';
 require_once __DIR__ . '/../../includes/bodega.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
