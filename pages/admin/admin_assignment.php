@@ -95,45 +95,29 @@ function assignmentConditionRuntime(): array {
 }
 
 function assignmentLifecycleAppUrl(): string {
-    $host = trim((string)($_SERVER['HTTP_HOST'] ?? ''));
-    if (preg_match('/^(localhost|127\.0\.0\.1|\[::1\]):8083$/i', $host, $m)) {
-        return 'http://' . $m[1] . ':8082';
-    }
-    if (preg_match('/^(localhost|127\.0\.0\.1|\[::1\])(?::80)?$/i', $host, $m)) {
-        $localHost = trim($m[1], '[]');
-        return 'http://' . $localHost . '/LifeCycleTrack';
-    }
     $base = rtrim(trim((string) (getenv('LIFECYCLETRACK_APP_URL') ?: '')), '/');
     if ($base !== '') return $base;
     $runtimePort = (int)(assignmentConditionRuntime()['ports']['lifecycle'] ?? 0);
     if ($runtimePort > 0) return 'http://127.0.0.1:' . $runtimePort;
     return strtolower(trim((string) getenv('LOCAL_STAGING_ALLOW_HTTP'))) === 'true'
-        ? 'http://192.168.1.11:8000'
+        ? 'http://127.0.0.1:8082'
         : '';
 }
 
 function assignmentConditionSecret(): string {
-    $runtimeSecret = trim((string)(assignmentConditionRuntime()['api_tokens']['MAINTAINTRACK_CONDITION_HMAC_SECRET'] ?? ''));
-    if ($runtimeSecret !== '') return $runtimeSecret;
-    return trim((string) (getenv('MAINTAINTRACK_CONDITION_HMAC_SECRET') ?: ''));
+    $secret = trim((string) (getenv('MAINTAINTRACK_CONDITION_HMAC_SECRET') ?: ''));
+    if ($secret !== '') return $secret;
+    return trim((string)(assignmentConditionRuntime()['api_tokens']['MAINTAINTRACK_CONDITION_HMAC_SECRET'] ?? ''));
 }
 
 function assignmentConditionHandoffToken(string $entity, string $assetId, string $requestId, string $requestReference = ''): string {
     $secret = assignmentConditionSecret();
     $adminId = trim((string) ($_SESSION['user_id'] ?? ''));
-    $host = trim((string)($_SERVER['HTTP_HOST'] ?? ''));
-    $returnUrl = '';
-    if (preg_match('/^(localhost|127\.0\.0\.1|\[::1\])(?::80)?$/i', $host, $m)) {
-        $returnUrl = 'http://' . trim($m[1], '[]') . '/MaintainTrack/pages/admin/admin_assignment.php';
-    }
-    if ($returnUrl === '' && preg_match('/^(localhost|127\.0\.0\.1|\[::1\]):8083$/i', $host, $m)) {
-        $returnUrl = 'http://' . $m[1] . ':8083/pages/admin/admin_assignment.php';
-    }
-    if ($returnUrl === '') $returnUrl = trim((string) (getenv('MAINTAINTRACK_ADMIN_RETURN_URL') ?: ''));
+    $returnUrl = trim((string) (getenv('MAINTAINTRACK_ADMIN_RETURN_URL') ?: ''));
     $runtimePort = (int)(assignmentConditionRuntime()['ports']['maintain'] ?? 0);
     if ($returnUrl === '' && $runtimePort > 0) $returnUrl = 'http://127.0.0.1:' . $runtimePort . '/pages/admin/admin_assignment.php';
     if ($returnUrl === '' && strtolower(trim((string) getenv('LOCAL_STAGING_ALLOW_HTTP'))) === 'true') {
-        $returnUrl = 'http://192.168.1.11/pages/admin/admin_assignment.php';
+        $returnUrl = 'http://127.0.0.1:8083/pages/admin/admin_assignment.php';
     }
     if ($secret === '' || !preg_match('/^[0-9a-f-]{36}$/i', $adminId) || $requestId === '' || $returnUrl === '') return '';
 
